@@ -55,20 +55,23 @@ class _ListProfileState extends State<ListProfile> {
               );
             },
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  'https://ui-avatars.com/api/?name=${profile.name12}',
-                ),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(
+                'https://ui-avatars.com/api/?name=${profile.name12}',
               ),
-              title: Text(profile.name12),
-              subtitle: Text(profile.bio12),
-              onTap: () => Navigator.push(
+            ),
+            title: Text(profile.name12),
+            subtitle: Text(profile.bio12),
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => DetailProfile(profile: profile),
                 ),
-              ),
-            ),
+              );
+              setState(() {});
+            },
+          ),
           );
         },
       ),
