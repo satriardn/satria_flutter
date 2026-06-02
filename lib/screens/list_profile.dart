@@ -20,7 +20,6 @@ class _ListProfileState extends State<ListProfile> {
     int lastIndex = provider.profiles.length;
 
     final newProfile = Profile(
-      id12: lastIndex + 1,
       coverphoto12: 'assets/images/background1.jpg',
       profilephoto12:
           'https://scontent.fdps5-1.fna.fbcdn.net/v/t39.30808-1/552277608_1351592173207430_7999390111222818431_n.jpg?stp=c0.0.992.992a_dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeF5833njfPS8gJoOj7cjI5nPWlADAZA_uw9aUAMBkD-7CVSZDNRU_V2JO30wwTpK9robbI6mPGXXphdADuReEOw&_nc_ohc=hGsg1TEqyBAQ7kNvwF3px1l&_nc_oc=AdrNwk1i3AQxsQpxyDfwSdrhAJ_RmRQjpNB5OR0PEezpi3cgflqxnR8FhZj_X4NzwBY&_nc_zt=24&_nc_ht=scontent.fdps5-1.fna&_nc_gid=GZMJrsLp3Uvyt2BNDixXUA&_nc_ss=7a3a8&oh=00_Af0a6oD2wEVOE8mGgQUa_OPgPpmjCSY1u0suTGEcZkYD4g&oe=69EE014F',
@@ -32,8 +31,8 @@ class _ListProfileState extends State<ListProfile> {
     provider.addProfile(newProfile);
   }
 
-  void deleteitem(int index) {
-    context.read<ProfileProvider>().deleteProfile(index);
+  void deleteitem(int id) {
+    context.read<ProfileProvider>().deleteProfile(id);
   }
 
   @override
@@ -51,7 +50,7 @@ class _ListProfileState extends State<ListProfile> {
                 key: Key(profile.id12.toString()), 
                 onDismissed: (direction) {
                   final deletedItem = profiles[index];
-                  deleteitem(index);
+                  deleteitem(deletedItem.id12!);
                   Fluttertoast.showToast(
                     msg: "Profile ${deletedItem.name12} dihapus",
                   );
@@ -68,7 +67,7 @@ class _ListProfileState extends State<ListProfile> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailProfile(profileId12: profile.id12), 
+                        builder: (context) => DetailProfile(profileId12: profile.id12!), 
                       ),
                     );
                     setState(() {});

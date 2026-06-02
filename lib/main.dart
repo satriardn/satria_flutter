@@ -4,8 +4,14 @@ import 'package:satria_flutter/models/profile.dart';
 import 'package:satria_flutter/provider/profile_provider.dart';
 import 'package:satria_flutter/screens/list_profile.dart';
 import 'screens/detail_profile.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+
+  sqfliteFfiInit();
+
+  databaseFactory = databaseFactoryFfi;
+  
   runApp(
     ChangeNotifierProvider(create: (_) => ProfileProvider(), child: MyApp()),
   );
@@ -138,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     phonenumber12: "121295228281"
                   );
                   if (index != -1) {
-                    provider.updateProfile(index, profile);
+                    provider.updateProfile(0, profile);
                   } else {
                     provider.addProfile(profile);
                   }

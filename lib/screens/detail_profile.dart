@@ -109,7 +109,7 @@ class DetailProfile extends StatelessWidget {
                     (p) => p.id12 == profileId12,
                   );
                   if (index != -1) {
-                    provider.updateProfile(index, updatedProfile);
+                    provider.updateProfile(profileId12, updatedProfile);
                     Fluttertoast.showToast(
                       msg: "Profile berhasil diperbarui",
                     );
